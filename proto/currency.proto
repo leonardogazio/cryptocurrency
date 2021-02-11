@@ -1,0 +1,38 @@
+//$ cd proto
+//$ protoc currency.proto --go_out=plugins=grpc:./pb
+
+syntax = "proto3";
+
+package pb;
+
+option go_package = "pb";
+
+message Currency {
+    string id   = 1;
+    string code = 2;
+    string name = 3;
+}
+
+message CurrencyList {
+    repeated Currency items = 1;
+}
+
+message DeleteCurrencyReq {
+    string id = 1;
+}
+
+message DeleteCurrencyRes {
+    bool success = 1;
+}
+
+message ListCurrenciesReq {
+    string filter = 1;
+}
+
+service CurrencyService {
+    rpc CreateCurrency(Currency) returns (Currency);
+    rpc UpdateCurrency(Currency) returns (Currency);
+    rpc DeleteCurrency(DeleteCurrencyReq) returns (DeleteCurrencyRes);
+    rpc ListCurrencies(ListCurrenciesReq) returns (CurrencyList){};
+}
+
