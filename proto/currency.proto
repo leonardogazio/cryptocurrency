@@ -33,6 +33,6 @@ service CurrencyService {
     rpc CreateCurrency(Currency) returns (Currency);
     rpc UpdateCurrency(Currency) returns (Currency);
     rpc DeleteCurrency(DeleteCurrencyReq) returns (DeleteCurrencyRes);
-    rpc ListCurrencies(ListCurrenciesReq) returns (CurrencyList){};
+    rpc ListCurrencies(ListCurrenciesReq) returns (CurrencyList);
 }
 
