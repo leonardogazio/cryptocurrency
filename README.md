@@ -11,5 +11,5 @@ Todo:
 * Currency Rating methods
 * Currency Rating sum stream
 * API authentication
-* Improve currency CRUD testing.
+* Improve Currency CRUD testing.
 * Code cleaning
