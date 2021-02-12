@@ -9,10 +9,7 @@ Featuring:
 Todo:
 
 * Currency Rating methods
-* Currency Rate sum stream
+* Currency Rating sum stream
 * API authentication
-* Improve CurrencyCreate test cases
-* UpdateCurrency unit test
-* DeleteCurrency unit test
-* ListCurrencies unit test
+* Improve currency CRUD testing.
 * Code cleaning
