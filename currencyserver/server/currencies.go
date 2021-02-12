@@ -46,7 +46,7 @@ func (s *CurrencyServiceServer) UpdateCurrency(ctx context.Context, req *pb.Curr
 	if err != nil {
 		return nil, status.Errorf(
 			codes.InvalidArgument,
-			fmt.Sprintf("Could not convert supplied request id to a MongoDB ObjectId: %s", err.Error()),
+			"no valid id provided",
 		)
 	}
 
@@ -82,7 +82,7 @@ func (s *CurrencyServiceServer) UpdateCurrency(ctx context.Context, req *pb.Curr
 func (s *CurrencyServiceServer) DeleteCurrency(ctx context.Context, req *pb.DeleteCurrencyReq) (res *pb.DeleteCurrencyRes, err error) {
 	id, err := primitive.ObjectIDFromHex(req.GetId())
 	if err != nil {
-		return nil, status.Errorf(codes.InvalidArgument, fmt.Sprintf("Could not convert to ObjectId: %v", err))
+		return nil, status.Errorf(codes.InvalidArgument, "no valid id provided")
 	}
 	if r, _ := repo.Database.Collection("currencies").DeleteOne(ctx, bson.M{"_id": id}); r.DeletedCount == 0 {
 		return nil, errors.New("no currency record found by given code")
@@ -103,7 +103,7 @@ func (s *CurrencyServiceServer) ListCurrencies(ctx context.Context, req *pb.List
 		},
 	}
 
-	cursor, err := repo.Database.Collection("currencies").Find(context.Background(), filter)
+	cursor, err := repo.Database.Collection("currencies").Find(context.Background(), filter, options.Find().SetLimit(1000))
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, fmt.Sprintf("Unknown internal error: %v", err))
 	}
