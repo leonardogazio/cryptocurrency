@@ -85,6 +85,8 @@ func TestUpdateCurrency(t *testing.T) {
 	cli := pb.NewCurrencyServiceClient(conn)
 
 	for _, req := range updateRequests {
+		req.Code = fake.CurrencyCode()
+		req.Name = fake.Word()
 		res, err := cli.UpdateCurrency(ctx, req)
 		if err != nil {
 			t.Errorf("UpdateCurrency test failed: %s", err.Error())
