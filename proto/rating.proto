@@ -1,0 +1,25 @@
+//$ cd proto
+//$ protoc rating.proto --go_out=plugins=grpc:./pb
+
+syntax = "proto3";
+
+package pb;
+
+option go_package = "pb";
+
+import "currency.proto";
+
+message RateCurrencyReq {
+    string currencyId = 1;
+    string vote = 2;
+}
+
+message RatingSumStreamReq {
+    string currencyId = 1;
+}
+
+message RatingSumRes {
+    Currency currency = 1;
+    int32 upvotes = 2;
+    int32 downvotes = 3;
+}

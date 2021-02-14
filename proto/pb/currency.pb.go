@@ -10,10 +10,6 @@
 package pb
 
 import (
-	context "context"
-	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -297,23 +293,8 @@ var file_currency_proto_rawDesc = []byte{
 	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
 	0x22, 0x2b, 0x0a, 0x11, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x69,
 	0x65, 0x73, 0x52, 0x65, 0x71, 0x12, 0x16, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x32, 0xe8, 0x01,
-	0x0a, 0x0f, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x12, 0x2c, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x75, 0x72, 0x72, 0x65,
-	0x6e, 0x63, 0x79, 0x12, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63,
-	0x79, 0x1a, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x12,
-	0x2c, 0x0a, 0x0e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63,
-	0x79, 0x12, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x1a,
-	0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x12, 0x3e, 0x0a,
-	0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x12,
-	0x15, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x75, 0x72, 0x72, 0x65,
-	0x6e, 0x63, 0x79, 0x52, 0x65, 0x71, 0x1a, 0x15, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65,
-	0x74, 0x65, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x52, 0x65, 0x73, 0x12, 0x39, 0x0a,
-	0x0e, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x69, 0x65, 0x73, 0x12,
-	0x15, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63,
-	0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x1a, 0x10, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x75, 0x72, 0x72,
-	0x65, 0x6e, 0x63, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x04, 0x5a, 0x02, 0x70, 0x62, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x42, 0x04, 0x5a,
+	0x02, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -338,16 +319,8 @@ var file_currency_proto_goTypes = []interface{}{
 }
 var file_currency_proto_depIdxs = []int32{
 	0, // 0: pb.CurrencyList.items:type_name -> pb.Currency
-	0, // 1: pb.CurrencyService.CreateCurrency:input_type -> pb.Currency
-	0, // 2: pb.CurrencyService.UpdateCurrency:input_type -> pb.Currency
-	2, // 3: pb.CurrencyService.DeleteCurrency:input_type -> pb.DeleteCurrencyReq
-	4, // 4: pb.CurrencyService.ListCurrencies:input_type -> pb.ListCurrenciesReq
-	0, // 5: pb.CurrencyService.CreateCurrency:output_type -> pb.Currency
-	0, // 6: pb.CurrencyService.UpdateCurrency:output_type -> pb.Currency
-	3, // 7: pb.CurrencyService.DeleteCurrency:output_type -> pb.DeleteCurrencyRes
-	1, // 8: pb.CurrencyService.ListCurrencies:output_type -> pb.CurrencyList
-	5, // [5:9] is the sub-list for method output_type
-	1, // [1:5] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -428,7 +401,7 @@ func file_currency_proto_init() {
 			NumEnums:      0,
 			NumMessages:   5,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
 		GoTypes:           file_currency_proto_goTypes,
 		DependencyIndexes: file_currency_proto_depIdxs,
@@ -438,192 +411,4 @@ func file_currency_proto_init() {
 	file_currency_proto_rawDesc = nil
 	file_currency_proto_goTypes = nil
 	file_currency_proto_depIdxs = nil
-}
-
-// Reference imports to suppress errors if they are not otherwise used.
-var _ context.Context
-var _ grpc.ClientConnInterface
-
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
-
-// CurrencyServiceClient is the client API for CurrencyService service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type CurrencyServiceClient interface {
-	CreateCurrency(ctx context.Context, in *Currency, opts ...grpc.CallOption) (*Currency, error)
-	UpdateCurrency(ctx context.Context, in *Currency, opts ...grpc.CallOption) (*Currency, error)
-	DeleteCurrency(ctx context.Context, in *DeleteCurrencyReq, opts ...grpc.CallOption) (*DeleteCurrencyRes, error)
-	ListCurrencies(ctx context.Context, in *ListCurrenciesReq, opts ...grpc.CallOption) (*CurrencyList, error)
-}
-
-type currencyServiceClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewCurrencyServiceClient(cc grpc.ClientConnInterface) CurrencyServiceClient {
-	return &currencyServiceClient{cc}
-}
-
-func (c *currencyServiceClient) CreateCurrency(ctx context.Context, in *Currency, opts ...grpc.CallOption) (*Currency, error) {
-	out := new(Currency)
-	err := c.cc.Invoke(ctx, "/pb.CurrencyService/CreateCurrency", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *currencyServiceClient) UpdateCurrency(ctx context.Context, in *Currency, opts ...grpc.CallOption) (*Currency, error) {
-	out := new(Currency)
-	err := c.cc.Invoke(ctx, "/pb.CurrencyService/UpdateCurrency", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *currencyServiceClient) DeleteCurrency(ctx context.Context, in *DeleteCurrencyReq, opts ...grpc.CallOption) (*DeleteCurrencyRes, error) {
-	out := new(DeleteCurrencyRes)
-	err := c.cc.Invoke(ctx, "/pb.CurrencyService/DeleteCurrency", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *currencyServiceClient) ListCurrencies(ctx context.Context, in *ListCurrenciesReq, opts ...grpc.CallOption) (*CurrencyList, error) {
-	out := new(CurrencyList)
-	err := c.cc.Invoke(ctx, "/pb.CurrencyService/ListCurrencies", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// CurrencyServiceServer is the server API for CurrencyService service.
-type CurrencyServiceServer interface {
-	CreateCurrency(context.Context, *Currency) (*Currency, error)
-	UpdateCurrency(context.Context, *Currency) (*Currency, error)
-	DeleteCurrency(context.Context, *DeleteCurrencyReq) (*DeleteCurrencyRes, error)
-	ListCurrencies(context.Context, *ListCurrenciesReq) (*CurrencyList, error)
-}
-
-// UnimplementedCurrencyServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedCurrencyServiceServer struct {
-}
-
-func (*UnimplementedCurrencyServiceServer) CreateCurrency(context.Context, *Currency) (*Currency, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCurrency not implemented")
-}
-func (*UnimplementedCurrencyServiceServer) UpdateCurrency(context.Context, *Currency) (*Currency, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateCurrency not implemented")
-}
-func (*UnimplementedCurrencyServiceServer) DeleteCurrency(context.Context, *DeleteCurrencyReq) (*DeleteCurrencyRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCurrency not implemented")
-}
-func (*UnimplementedCurrencyServiceServer) ListCurrencies(context.Context, *ListCurrenciesReq) (*CurrencyList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListCurrencies not implemented")
-}
-
-func RegisterCurrencyServiceServer(s *grpc.Server, srv CurrencyServiceServer) {
-	s.RegisterService(&_CurrencyService_serviceDesc, srv)
-}
-
-func _CurrencyService_CreateCurrency_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Currency)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CurrencyServiceServer).CreateCurrency(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.CurrencyService/CreateCurrency",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CurrencyServiceServer).CreateCurrency(ctx, req.(*Currency))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CurrencyService_UpdateCurrency_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Currency)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CurrencyServiceServer).UpdateCurrency(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.CurrencyService/UpdateCurrency",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CurrencyServiceServer).UpdateCurrency(ctx, req.(*Currency))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CurrencyService_DeleteCurrency_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCurrencyReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CurrencyServiceServer).DeleteCurrency(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.CurrencyService/DeleteCurrency",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CurrencyServiceServer).DeleteCurrency(ctx, req.(*DeleteCurrencyReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CurrencyService_ListCurrencies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListCurrenciesReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CurrencyServiceServer).ListCurrencies(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.CurrencyService/ListCurrencies",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CurrencyServiceServer).ListCurrencies(ctx, req.(*ListCurrenciesReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _CurrencyService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.CurrencyService",
-	HandlerType: (*CurrencyServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "CreateCurrency",
-			Handler:    _CurrencyService_CreateCurrency_Handler,
-		},
-		{
-			MethodName: "UpdateCurrency",
-			Handler:    _CurrencyService_UpdateCurrency_Handler,
-		},
-		{
-			MethodName: "DeleteCurrency",
-			Handler:    _CurrencyService_DeleteCurrency_Handler,
-		},
-		{
-			MethodName: "ListCurrencies",
-			Handler:    _CurrencyService_ListCurrencies_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "currency.proto",
 }

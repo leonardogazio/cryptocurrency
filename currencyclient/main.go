@@ -22,7 +22,7 @@ func persistCurrency(cli pb.CurrencyServiceClient, cur *pb.Currency, createnew b
 }
 
 func commandExec(cli pb.CurrencyServiceClient, reader *bufio.Reader) {
-	fmt.Print("Enter operation type [create|read|update|delete]: ")
+	fmt.Print("Enter operation type [create|read|update|delete|rate]: ")
 	opr, _ := reader.ReadString('\n')
 	opr = strings.ToLower(strings.TrimSpace(opr))
 
@@ -56,8 +56,19 @@ func commandExec(cli pb.CurrencyServiceClient, reader *bufio.Reader) {
 		fmt.Print("Enter currency code: ")
 		id, _ := reader.ReadString('\n')
 		res, err = cli.DeleteCurrency(context.Background(), &pb.DeleteCurrencyReq{Id: strings.TrimSpace(id)})
+	case "rate":
+		data := &pb.RateCurrencyReq{}
+
+		fmt.Print("Enter currency ID: ")
+		id, _ := reader.ReadString('\n')
+		fmt.Print("Enter vote [0 = downvote / 1 = upvote]: ")
+		vote, _ := reader.ReadString('\n')
+		data.CurrencyId = strings.TrimSpace(id)
+		data.Vote = strings.TrimSpace(vote)
+
+		res, err = cli.RateCurrency(context.Background(), data)
 	default:
-		err = fmt.Errorf("invalid crud operation type %q", opr)
+		err = fmt.Errorf("invalid operation type %q", opr)
 	}
 
 	if err != nil {
