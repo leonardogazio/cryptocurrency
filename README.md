@@ -8,7 +8,8 @@ Featuring:
 
 Todo:
 
-* Currency Rating sum stream
+* Improve Client
+* Improve Currency CRUD testing
+* Implement RatingSumStream testing
 * API authentication
-* Improve Currency CRUD testing.
 * Code cleaning
