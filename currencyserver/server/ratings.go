@@ -75,6 +75,53 @@ func (s *CurrencyServiceServer) RateCurrency(ctx context.Context, req *pb.RateCu
 }
 
 //RatingSumStream streams periodically to the client given Currency rating sum
-func (s *CurrencyServiceServer) RatingSumStream(req *pb.RatingSumStreamReq, stream pb.CurrencyService_RatingSumStreamServer) error {
-	return nil
+func (s *CurrencyServiceServer) RatingSumStream(req *pb.RateCurrencyReq, stream pb.CurrencyService_RatingSumStreamServer) error {
+	currencyID, err := primitive.ObjectIDFromHex(req.GetCurrencyId())
+	if err != nil {
+		return status.Errorf(codes.InvalidArgument, "no valid Currency id provided")
+	}
+
+	ctx := context.Background()
+
+	currency := model.Currency{}
+	result := repo.Database.Collection("currencies").FindOne(ctx, bson.M{"_id": currencyID})
+	if err := result.Decode(&currency); err != nil {
+		return status.Errorf(codes.NotFound, fmt.Sprintf("No currency found by given object ID %q", req.GetCurrencyId()))
+	}
+
+	lastCount := struct {
+		Upvotes, Downvotes int32
+	}{}
+
+	timer := time.NewTicker(5 * time.Second)
+
+	for {
+		select {
+		case <-stream.Context().Done():
+			return nil
+		case <-timer.C:
+			upvoteCount, err := voteCount(ctx, currencyID, 1)
+			if err != nil {
+				return status.Errorf(codes.Internal, "could not count upvotes")
+			}
+			downvoteCount, err := voteCount(ctx, currencyID, 0)
+			if err != nil {
+				return status.Errorf(codes.Internal, "could not count downvotes")
+			}
+
+			if lastCount.Upvotes != int32(upvoteCount) || lastCount.Downvotes != int32(downvoteCount) {
+				stream.Send(&pb.RatingSumRes{
+					Currency: &pb.Currency{
+						Id:   currency.ID.Hex(),
+						Code: currency.Code,
+						Name: currency.Name,
+					},
+					Upvotes:   int32(upvoteCount),
+					Downvotes: int32(downvoteCount),
+				})
+				lastCount.Upvotes = int32(upvoteCount)
+				lastCount.Downvotes = int32(downvoteCount)
+			}
+		}
+	}
 }

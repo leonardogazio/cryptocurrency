@@ -14,10 +14,6 @@ message RateCurrencyReq {
     string vote = 2;
 }
 
-message RatingSumStreamReq {
-    string currencyId = 1;
-}
-
 message RatingSumRes {
     Currency currency = 1;
     int32 upvotes = 2;

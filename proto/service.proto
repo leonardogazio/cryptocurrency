@@ -1,3 +1,6 @@
+//$ cd proto
+//$ protoc service.proto --go_out=plugins=grpc:./pb
+
 syntax = "proto3";
 
 package pb;
@@ -14,5 +17,5 @@ service CurrencyService {
     rpc ListCurrencies(ListCurrenciesReq) returns (CurrencyList);
 
     rpc RateCurrency(RateCurrencyReq) returns (RatingSumRes);
-    rpc RatingSumStream(RatingSumStreamReq) returns (stream RatingSumRes);
+    rpc RatingSumStream(RateCurrencyReq) returns (stream RatingSumRes);
 }
