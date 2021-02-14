@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "pb";
+
+import "currency.proto";
+import "rating.proto";
+
+service CurrencyService {
+    rpc CreateCurrency(Currency) returns (Currency);
+    rpc UpdateCurrency(Currency) returns (Currency);
+    rpc DeleteCurrency(DeleteCurrencyReq) returns (DeleteCurrencyRes);
+    rpc ListCurrencies(ListCurrenciesReq) returns (CurrencyList);
+
+    rpc RateCurrency(RateCurrencyReq) returns (RatingSumRes);
+    rpc RatingSumStream(RatingSumStreamReq) returns (stream RatingSumRes);
+}

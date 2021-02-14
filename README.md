@@ -8,7 +8,6 @@ Featuring:
 
 Todo:
 
-* Currency Rating methods
 * Currency Rating sum stream
 * API authentication
 * Improve Currency CRUD testing.
