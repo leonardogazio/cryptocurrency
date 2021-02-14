@@ -10,6 +10,7 @@ Todo:
 
 * Improve Client
 * Improve Currency CRUD testing
+* Improve validations
 * Implement RatingSumStream testing
 * API authentication
 * Code cleaning
