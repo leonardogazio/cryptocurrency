@@ -3,7 +3,9 @@ package main
 import (
 	"bufio"
 	"context"
+	"errors"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"strings"
@@ -22,7 +24,7 @@ func persistCurrency(cli pb.CurrencyServiceClient, cur *pb.Currency, createnew b
 }
 
 func commandExec(cli pb.CurrencyServiceClient, reader *bufio.Reader) {
-	fmt.Print("Enter operation type [create|read|update|delete|rate]: ")
+	fmt.Print("Enter operation type [create|read|update|delete|rate|ratestream]: ")
 	opr, _ := reader.ReadString('\n')
 	opr = strings.ToLower(strings.TrimSpace(opr))
 
@@ -53,7 +55,7 @@ func commandExec(cli pb.CurrencyServiceClient, reader *bufio.Reader) {
 		filter, _ := reader.ReadString('\n')
 		res, err = cli.ListCurrencies(context.Background(), &pb.ListCurrenciesReq{Filter: strings.TrimSpace(filter)})
 	case "delete":
-		fmt.Print("Enter currency code: ")
+		fmt.Print("Enter currency ID: ")
 		id, _ := reader.ReadString('\n')
 		res, err = cli.DeleteCurrency(context.Background(), &pb.DeleteCurrencyReq{Id: strings.TrimSpace(id)})
 	case "rate":
@@ -67,6 +69,31 @@ func commandExec(cli pb.CurrencyServiceClient, reader *bufio.Reader) {
 		data.Vote = strings.TrimSpace(vote)
 
 		res, err = cli.RateCurrency(context.Background(), data)
+	case "ratestream":
+		fmt.Print("Enter currency ID: ")
+		id, _ := reader.ReadString('\n')
+
+		data := &pb.RateCurrencyReq{
+			CurrencyId: strings.TrimSpace(id),
+		}
+
+		stm, _err := cli.RatingSumStream(context.Background(), data)
+		if err != nil {
+			err = _err
+		}
+
+		for {
+			res, _err = stm.Recv()
+			if _err == io.EOF {
+				err = errors.New("server streaming stopped")
+				break
+			}
+			if _err != nil {
+				err = _err
+				break
+			}
+			fmt.Println(res)
+		}
 	default:
 		err = fmt.Errorf("invalid operation type %q", opr)
 	}

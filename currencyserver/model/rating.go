@@ -22,8 +22,7 @@ func (r Rating) Validate() error {
 	if (r.Datetime == time.Time{}) {
 		return errors.New("Rating should have a Datetime")
 	}
-	acceptableVoteValues := common.ValueSlice{0, 1}
-	if !acceptableVoteValues.Has(r.Vote) {
+	if !(common.ValueSlice{0, 1}).Has(r.Vote) {
 		return errors.New("Vote value is invalid. Acceptable values: 0 = Downvote / 1 = Upvote")
 	}
 	return nil
