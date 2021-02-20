@@ -1,4 +1,4 @@
-# CRUD operations example using MongoDB and gRPC
+# MongoDB + gRPC API example
 
 Featuring: 
 
@@ -13,4 +13,3 @@ Todo:
 * Improve validations
 * Implement RatingSumStream testing
 * API authentication
-* Code cleaning
