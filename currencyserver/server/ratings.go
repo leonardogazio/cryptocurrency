@@ -83,8 +83,10 @@ func (s *CurrencyServiceServer) RatingSumStream(req *pb.RateCurrencyReq, stream 
 
 	ctx := context.Background()
 
+	currencyCollection := repo.Database.Collection("currencies")
+
 	currency := model.Currency{}
-	result := repo.Database.Collection("currencies").FindOne(ctx, bson.M{"_id": currencyID})
+	result := currencyCollection.FindOne(ctx, bson.M{"_id": currencyID})
 	if err := result.Decode(&currency); err != nil {
 		return status.Errorf(codes.NotFound, fmt.Sprintf("No currency found by given object ID %q", req.GetCurrencyId()))
 	}
@@ -96,6 +98,10 @@ func (s *CurrencyServiceServer) RatingSumStream(req *pb.RateCurrencyReq, stream 
 	timer := time.NewTicker(5 * time.Second)
 
 	for {
+		if count, err := currencyCollection.CountDocuments(ctx, bson.M{"_id": currencyID}); err != nil || count < 1 {
+			return status.Errorf(codes.Internal, "could not find currency with %q object id", req.GetCurrencyId())
+		}
+
 		select {
 		case <-stream.Context().Done():
 			return nil
