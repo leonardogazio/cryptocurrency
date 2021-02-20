@@ -66,11 +66,9 @@ func (s *CurrencyServiceServer) UpdateCurrency(ctx context.Context, req *pb.Curr
 	)
 
 	if err := result.Decode(&data); err != nil {
-		return nil, status.Errorf(
-			codes.NotFound,
-			fmt.Sprintf("Could not find currency with supplied code: %s", err.Error()),
-		)
+		return nil, status.Errorf(codes.Internal, err.Error())
 	}
+
 	return &pb.Currency{
 		Id:   data.ID.Hex(),
 		Code: data.Code,
